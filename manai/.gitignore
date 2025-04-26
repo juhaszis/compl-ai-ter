@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL Python files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment folders
+env/
+venv/
+.venv/
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# ChromaDB storage (generated after indexing)
+chroma_store/
+
+# Downloaded manpages
+manpages/
+
+# Logs or temp files
+*.log

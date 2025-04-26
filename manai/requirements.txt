@@ -1,0 +1,17 @@
+# Embedding and transformers
+sentence-transformers
+transformers
+torch
+
+# Vector DB
+chromadb
+
+# Chunking and data tools
+langchain
+
+# HTML parsing for scraping (used during manpage fetching)
+beautifulsoup4
+requests
+
+# API server
+flask
