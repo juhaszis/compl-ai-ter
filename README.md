@@ -17,7 +17,7 @@ I already had a local AI setup running, so I figured — why not use it like a s
 
 ### ✨ Features
 - Local shell command completion using Ollama models (e.g. `codellama:13b`)
-- Optional contextual augmentation from man pages via the [`manai`](./manai/README.md) service (already included in the `./manai` subdirectory)
+- Optional contextual augmentation from man pages via the [`manai`](./manai/readme.md) service (already included in the `./manai` subdirectory)
 - JSON-based output with retry and fallback handling
 - RAW mode for general-purpose questions or direct instructions (like a smart encyclopedia)
 
