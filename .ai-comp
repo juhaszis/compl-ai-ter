@@ -1,0 +1,57 @@
+# AI Completion shell bővítmény (betölthető: . ~/.se/.ai-comp)
+
+# Elérési út a Python scripthez
+COMPL_AI_TER_SCRIPT="$HOME/.se/complaiter.py"
+COMPL_AI_TER_SUGGESTIONS="$HOME/.se/.last_suggestion"
+
+# Alt+A – AI javaslat generálás és mentés
+compl_ai_tab() {
+    local input="${READLINE_LINE}"
+    echo
+
+    echo "### AI suggestions for ## $input ##"
+    python3 "$COMPL_AI_TER_SCRIPT" "$input" 5 > "$COMPL_AI_TER_SUGGESTIONS"
+
+    echo
+    nl -w1 -s'. ' "$COMPL_AI_TER_SUGGESTIONS"
+    echo
+    compl_ai_pick 1
+}
+
+# Alt+1..5 – Javaslat kiválasztás
+compl_ai_pick() {
+    local index=$1
+    local line
+    line=$(sed -n "${index}p" "$COMPL_AI_TER_SUGGESTIONS")
+    if [[ -n "$line" ]]; then
+        if [[ "$line" == \#* ]]; then
+            echo "# The AI answerred with the following. (Printing full extended answer)"
+            cat "$COMPL_AI_TER_SUGGESTIONS"
+            return
+        fi
+        READLINE_LINE="$line"
+        READLINE_POINT=${#READLINE_LINE}
+    fi
+}
+
+# Alt+S – RAW módú AI kérés
+compl_ai_raw() {
+    local input="${READLINE_LINE}"
+    echo "### RAW AI response for ## $input ##"
+    python3 "$COMPL_AI_TER_SCRIPT" "RAW $input"
+    echo
+    READLINE_LINE=""
+}
+
+# Bind Alt+A – javaslat generálás
+bind -x '"\ea": compl_ai_tab'
+
+# Bind Alt+1..5 – javaslat kiválasztás
+bind -x '"\e1": compl_ai_pick 1'
+bind -x '"\e2": compl_ai_pick 2'
+bind -x '"\e3": compl_ai_pick 3'
+bind -x '"\e4": compl_ai_pick 4'
+bind -x '"\e5": compl_ai_pick 5'
+
+# Bind Alt+S – RAW mód
+bind -x '"\es": compl_ai_raw'

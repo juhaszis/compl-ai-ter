@@ -1,0 +1,3 @@
+awk -F':' '{if ($4 !="") {print $1,$4}}' /etc/group
+grep -oP '^[^:]*:(?=.*)[\w-]+' /etc/group | awk -F':' '{print $1,$4}'
+sed '/^\([^:]*:\)\{3\}/!d;s///' /etc/group | awk -F':' '{print $1,$4}'
