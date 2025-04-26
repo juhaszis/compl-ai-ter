@@ -1,10 +1,10 @@
 ## 🧠 Terminal AI Shell Completer
 
 > **Disclaimer:**
-> 
+>
+> This is a fun experimental project, so some hardcoded absolute paths may exist. 🚧  
 > Performance is strictly tied to the LLM model you choose.  
-> The developer is not responsible for any unexpected behavior or catastrophic typing disasters.
-> This is a fun experimental project, so some hardcoded absolute paths may exist. 🚧 
+> The developer is not responsible for any unexpected behavior or catastrophic typing disasters.  
 > You have been warned. ⚡
 
 This tool provides intelligent shell command completions using a local LLM via Ollama.
