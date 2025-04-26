@@ -1,13 +1,17 @@
 ## 🧠 Terminal AI Shell Completer
 
-> **Disclaimer:**
+> ⚡ **Disclaimer:**
 >
-> This is a fun experimental project, so some hardcoded absolute paths may exist. 🚧  
+> **🚧 This is a fun experimental project, so some hardcoded absolute paths may exist. 🚧**  
 > Performance is strictly tied to the LLM model you choose.  
 > The developer is not responsible for any unexpected behavior or catastrophic typing disasters.  
 > You have been warned. ⚡
 
-This tool provides intelligent shell command completions using a local LLM via Ollama.
+
+---
+
+**Terminal AI Shell Completer** provides intelligent shell command completions using a local LLM via Ollama.
+
 
 I already had a local AI setup running, so I figured — why not use it like a smart version of the TAB key? This is just a fun little experiment for me, nothing serious — but it's surprisingly useful. It can also enhance answers with relevant man page content, making it ideal for both beginners and power users.
 
@@ -16,6 +20,13 @@ I already had a local AI setup running, so I figured — why not use it like a s
 - Optional contextual augmentation from man pages via the [`manai`](./manai/README.md) service (already included in the `./manai` subdirectory)
 - JSON-based output with retry and fallback handling
 - RAW mode for general-purpose questions or direct instructions (like a smart encyclopedia)
+
+---
+
+### 📋 Requirements
+
+Before using Terminal AI Shell Completer, make sure you have [Ollama](https://ollama.com/) installed and running locally.  
+You can find installation instructions and model setup guides on the [official Ollama website](https://ollama.com/).
 
 ---
 
@@ -50,20 +61,22 @@ To enable shell integration, source your `.ai-comp` helper script from your shel
 Once loaded:
 - **Alt+A** → Generate 5 AI command suggestions based on the current input line
 - **Alt+1..5** → Insert the selected suggestion
-- **Alt+S** → RAW query: sends prompt directly and prints the full raw result
+- **Alt+S** → RAW query: sends a freeform prompt directly and prints the full result (best for open-ended questions)
 
 ---
 
 ### 🌐 Environment Variables
+
+Environment variables are grouped into logical sections for easier setup:
 | Variable                           | Description                                          | Default                                   |
 |------------------------------------|------------------------------------------------------|-------------------------------------------|
-| `COMPL_AI_TER_MODEL`              | Model name (Ollama)                                 | `codellama:13b`                           |
+| `COMPL_AI_TER_MODEL`              | Model name (Ollama) (you can replace it with a lighter model if needed) | `codellama:13b`                           |
 | `COMPL_AI_TER_MAX`                | Max number of suggestions                           | `3`                                       |
 | `COMPL_AI_TER_USE_MANAI`          | Use man page context enrichment                     | `1`                                       |
 | `COMPL_AI_TER_DEBUG`              | Print debug info                                    | `0`                                       |
 | `COMPL_AI_TER_PROMPT`             | System prompt file path                             | `~/.se/system_prompt.txt`                 |
-| `COMPL_AI_TER_SYSTEM_PROMPT_RAW`  | RAW mode system prompt file                         | `~/.se/system_prompt_raw.txt`             |
-| `COMPL_AI_TER_USER_PROMPT_PREFIX` | User prompt prefix file                             | `~/.se/user_prompt_prefix.txt`            |
+| `COMPL_AI_TER_SYSTEM_PROMPT_RAW`  | RAW mode system prompt file (for general-purpose queries) | `~/.se/system_prompt_raw.txt`             |
+| `COMPL_AI_TER_USER_PROMPT_PREFIX` | User prompt prefix file (used for command completions) | `~/.se/user_prompt_prefix.txt`            |
 | `COMPL_AI_TER_MANAI_API`          | Manai API URL                                       | `http://localhost:8000/query`             |
 
 ---
